@@ -16,13 +16,15 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_book_management.xml" value="0.1796875" />
         <entry key="app/src/main/res/layout/fragment_call_card_management.xml" value="0.1796875" />
-        <entry key="app/src/main/res/layout/fragment_change_infomation.xml" value="0.1796875" />
+        <entry key="app/src/main/res/layout/fragment_change_infomation.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_customer_management.xml" value="0.1796875" />
-        <entry key="app/src/main/res/layout/fragment_genre_management.xml" value="0.1796875" />
+        <entry key="app/src/main/res/layout/fragment_genre_management.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_income_analytics.xml" value="0.1796875" />
         <entry key="app/src/main/res/layout/fragment_librarian_management.xml" value="0.1796875" />
         <entry key="app/src/main/res/layout/fragment_top10_seller.xml" value="0.165625" />
+        <entry key="app/src/main/res/layout/layout_genre_dialog.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/layout_header_nav.xml" value="0.67" />
+        <entry key="app/src/main/res/layout/layout_item_genre.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/layout/layout_item_librarian.xml" value="0.5" />
         <entry key="app/src/main/res/layout/layout_librarian_update_dialog.xml" value="0.5" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.33" />
