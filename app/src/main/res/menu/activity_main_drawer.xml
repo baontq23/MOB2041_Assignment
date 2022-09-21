@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:checkableBehavior="single"
+        android:title="Quản lý">
+        <menu>
+            <item
+                android:id="@+id/nav_call_card_manage"
+                android:checkable="true"
+                android:icon="@drawable/ic_baseline_home_24"
+                android:title="@string/menu_call_card" />
+            <item
+                android:id="@+id/nav_book_genre_manage"
+                android:checkable="true"
+                android:icon="@drawable/ic_baseline_library_books_24"
+                android:title="@string/menu_genre" />
+            <item
+                android:id="@+id/nav_book_manage"
+                android:checkable="true"
+                android:icon="@drawable/ic_baseline_menu_book_24"
+                android:title="@string/menu_book" />
+            <item
+                android:id="@+id/nav_customer_manage"
+                android:checkable="true"
+                android:icon="@drawable/ic_baseline_people_24"
+                android:title="@string/menu_customer" />
+        </menu>
+    </item>
+    <item
+        android:checkableBehavior="single"
+        android:title="Thống kê">
+        <menu>
+            <item
+                android:id="@+id/nav_top10_book"
+                android:checkable="true"
+                android:icon="@drawable/ic_baseline_vertical_align_top_24"
+                android:title="@string/menu_top10" />
+            <item
+                android:id="@+id/nav_income"
+                android:checkable="true"
+                android:icon="@drawable/ic_baseline_attach_money_24"
+                android:title="@string/menu_income" />
+        </menu>
+    </item>
+    <item
+        android:checkableBehavior="single"
+        android:title="Quản trị viên">
+        <menu>
+            <item
+                android:id="@+id/nav_librarian_manage"
+                android:checkable="true"
+                android:enabled="true"
+                android:icon="@drawable/ic_outline_admin_24"
+                android:title="@string/menu_librarian"
+                android:visible="true" />
+        </menu>
+    </item>
+    <item
+        android:checkableBehavior="single"
+        android:title="Hệ thống">
+        <menu>
+            <item
+                android:id="@+id/nav_change_password"
+                android:checkable="true"
+                android:icon="@drawable/ic_baseline_key_24"
+                android:title="@string/menu_change_pass" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_baseline_logout_24"
+                android:title="@string/menu_logout" />
+        </menu>
+    </item>
+
+
+</menu>

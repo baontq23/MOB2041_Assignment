@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">PNLib</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Bao Nguyen</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_call_card">Quản lý phiếu mượn</string>
+    <string name="menu_genre">Quản lý loại sách</string>
+    <string name="menu_book">Quản lý sách</string>
+    <string name="menu_customer">Quản lý thành viên</string>
+    <string name="menu_librarian">Quản lý thủ thư</string>
+    <string name="menu_top10">Top 10 sách mượn nhiều nhất</string>
+    <string name="menu_income">Doanh thu</string>
+    <string name="menu_change_pass">Đổi mật khẩu</string>
+    <string name="menu_logout">Đăng xuất</string>
+
+    <string name="hello_blank_fragment">Hello World</string>
+    <string name="menu_change_info">Đổi thông tin</string>
+    <string name="session_data_id">session_id</string>
+    <string name="session_data_fullname">session_fullname</string>
+    <string name="session_data_username">session_username</string>
+    <string name="session_data_role">session_role</string>
+    <string name="session_is_remember">session_is_remember</string>
+</resources>
