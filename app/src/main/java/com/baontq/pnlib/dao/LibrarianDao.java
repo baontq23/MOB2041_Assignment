@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.baontq.pnlib.model.Librarian;
 
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Dao
 public interface LibrarianDao {
-    @Query("SELECT * FROM tbl_librarian")
+    @Query("SELECT * FROM tbl_librarian WHERE librarian_id != 1")
     List<Librarian> getAll();
 
     @Query("SELECT * FROM tbl_librarian WHERE librarian_username = :username AND " +
@@ -22,4 +23,8 @@ public interface LibrarianDao {
 
     @Delete
     int delete(Librarian librarian);
+
+    @Update()
+    int update(Librarian librarian);
+
 }

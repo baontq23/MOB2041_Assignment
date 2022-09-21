@@ -48,9 +48,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white, getTheme()));
         replaceFragment(new IncomeAnalyticsFragment(), getString(R.string.menu_income));
         navigationViewMainActivityNavigateFragment.setNavigationItemSelectedListener(this);
-        //navigationViewMainActivityNavigateFragment.getMenu().findItem(mNavItemId).setChecked(true);
+        if (getSharedPreferences("session", Context.MODE_PRIVATE).getString(getString(R.string.session_data_role), "User").equalsIgnoreCase("user"))
+            navigationViewMainActivityNavigateFragment.getMenu().findItem(R.id.nav_librarian_manage).setVisible(false);
         drawerToggle.syncState();
-        tvDrawerFullName.setText(getSharedPreferences("session",Context.MODE_PRIVATE).getString(getString(R.string.session_data_fullname), "Full name"));
+        tvDrawerFullName.setText(getSharedPreferences("session", Context.MODE_PRIVATE).getString(getString(R.string.session_data_fullname), "Full name"));
         tvDrawerHeaderRole.setText(getSharedPreferences("session", Context.MODE_PRIVATE).getString(getString(R.string.session_data_role), "Role"));
 
     }

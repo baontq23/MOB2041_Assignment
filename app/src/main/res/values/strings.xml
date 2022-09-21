@@ -25,4 +25,7 @@
     <string name="session_data_username">session_username</string>
     <string name="session_data_role">session_role</string>
     <string name="session_is_remember">session_is_remember</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="cancel">Huỷ bỏ</string>
+    <string name="notification">Thông báo</string>
 </resources>

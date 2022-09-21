@@ -28,6 +28,7 @@ public class Librarian {
 
     @Ignore
     public Librarian() {
+        this.role = "User";
     }
 
     public int getId() {
