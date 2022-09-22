@@ -24,6 +24,7 @@
         <entry key="app/src/main/res/layout/fragment_top10_seller.xml" value="0.165625" />
         <entry key="app/src/main/res/layout/layout_genre_dialog.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/layout_header_nav.xml" value="0.67" />
+        <entry key="app/src/main/res/layout/layout_item_customer.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/layout_item_genre.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/layout/layout_item_librarian.xml" value="0.5" />
         <entry key="app/src/main/res/layout/layout_librarian_update_dialog.xml" value="0.5" />
