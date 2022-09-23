@@ -28,4 +28,7 @@
     <string name="confirm">Xác nhận</string>
     <string name="cancel">Huỷ bỏ</string>
     <string name="notification">Thông báo</string>
+    <string name="update">Cập nhật</string>
+    <string name="list_empty">Danh sách hiện đang trống</string>
+    <string name="list_book_genre_empty">Vui lòng tạo thể loại trước khi thêm sách mới</string>
 </resources>
