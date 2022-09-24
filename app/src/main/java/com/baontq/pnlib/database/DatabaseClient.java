@@ -7,6 +7,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.baontq.pnlib.model.Book;
+import com.baontq.pnlib.model.Genre;
 import com.baontq.pnlib.model.Librarian;
 
 import java.util.concurrent.Executors;
@@ -23,6 +25,14 @@ public class DatabaseClient {
                 @Override
                 public void run() {
                     getAppDatabase().librarianDao().store(new Librarian("Bao Nguyen", "baontq", "03072003", "Admin"));
+                    getAppDatabase().genreDao().insert(new Genre("Lập trình", "Kệ 1"));
+                    getAppDatabase().genreDao().insert(new Genre("Kỹ thuật", "Kệ 4"));
+                    getAppDatabase().genreDao().insert(new Genre("Khoa học", "Kệ 2"));
+                    getAppDatabase().genreDao().insert(new Genre("Giải thuật", "Kệ 3"));
+                    getAppDatabase().bookDao().insert(new Book("C++", 15000.0, 1));
+                    getAppDatabase().bookDao().insert(new Book("Lắp robot", 32000.0, 2));
+                    getAppDatabase().bookDao().insert(new Book("10 vạn câu hỏi", 12000.0, 3));
+                    getAppDatabase().bookDao().insert(new Book("javascript algorithms", 24000.0, 4));
                 }
             });
         }

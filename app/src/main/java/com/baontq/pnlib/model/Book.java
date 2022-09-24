@@ -18,9 +18,10 @@ public class Book {
     @ColumnInfo(name = "genre_id", index = true)
     private int genreId;
 
-    public Book(String name, Double price) {
+    public Book(String name, Double price, int genreId) {
         this.name = name;
         this.price = price;
+        this.genreId = genreId;
     }
 
     @Ignore
