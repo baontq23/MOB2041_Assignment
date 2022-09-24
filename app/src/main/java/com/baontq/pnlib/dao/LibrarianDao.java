@@ -15,6 +15,9 @@ public interface LibrarianDao {
     @Query("SELECT * FROM tbl_librarian WHERE librarian_id != 1")
     List<Librarian> getAll();
 
+    @Query("SELECT * FROM tbl_librarian")
+    List<Librarian> listAll();
+
     @Query("SELECT * FROM tbl_librarian WHERE librarian_username = :username AND " +
             "librarian_password = :password LIMIT 1")
     Librarian auth(String username, String password);
