@@ -24,4 +24,13 @@ public interface BookDao {
 
     @Update
     int update(Book book);
+
+    @Query("SELECT * FROM tbl_book ORDER BY book_borrow_count DESC LIMIT 10")
+    List<Book> getTop10();
+
+    @Query("UPDATE tbl_book SET book_borrow_count = book_borrow_count + 1 WHERE book_id = :id")
+    int increaseBorrowCount(int id);
+
+    @Query("UPDATE tbl_book SET book_borrow_count = book_borrow_count - 1 WHERE book_id = :id")
+    int decreaseBorrowCount(int id);
 }

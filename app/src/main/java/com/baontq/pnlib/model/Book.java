@@ -15,6 +15,8 @@ public class Book {
     private String name;
     @ColumnInfo(name = "book_price")
     private Double price;
+    @ColumnInfo(name = "book_borrow_count")
+    private int borrowCount;
     @ColumnInfo(name = "genre_id", index = true)
     private int genreId;
 
@@ -22,10 +24,27 @@ public class Book {
         this.name = name;
         this.price = price;
         this.genreId = genreId;
+        this.borrowCount = 0;
+    }
+
+    @Ignore
+    public Book(String name, Double price, int genreId, int borrowCount) {
+        this.name = name;
+        this.price = price;
+        this.borrowCount = borrowCount;
+        this.genreId = genreId;
     }
 
     @Ignore
     public Book() {
+    }
+
+    public int getBorrowCount() {
+        return borrowCount;
+    }
+
+    public void setBorrowCount(int borrowCount) {
+        this.borrowCount = borrowCount;
     }
 
     public int getId() {

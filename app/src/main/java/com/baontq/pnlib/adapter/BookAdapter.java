@@ -48,8 +48,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookVH> {
     private List<Book> mBookList;
     private List<Genre> mGenreList;
     private BookDao bookDao;
-    private final int RETURNED_STATUS_COLOR = R.color.teal_700;
-    private final int BORROW_STATUS_COLOR = android.R.color.holo_orange_dark;
     private Map<Integer, String> genreMap;
     private HandleBookItem handleBookItem;
 
@@ -78,6 +76,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookVH> {
         holder.tvBookItemPrice.setText(String.format("Giá bìa: %.0f VND", book.getPrice()));
         holder.ibDeleteBook.setOnClickListener(view -> deleteItem(position));
         holder.itemView.setOnClickListener(view -> showUpdateItemDialog(position, mBookList.get(position)));
+        holder.tvBookItemBorrowCount.setText("Đã bán: " + book.getBorrowCount());
     }
 
     @Override
@@ -297,7 +296,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookVH> {
     }
 
     static class BookVH extends RecyclerView.ViewHolder {
-        TextView tvBookItemName, tvBookItemGenre, tvBookItemPrice;
+        TextView tvBookItemName, tvBookItemGenre, tvBookItemPrice,tvBookItemBorrowCount;
         ImageButton ibDeleteBook;
 
         public BookVH(@NonNull View itemView) {
@@ -306,7 +305,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookVH> {
             tvBookItemGenre = itemView.findViewById(R.id.tv_book_item_genre);
             tvBookItemPrice = itemView.findViewById(R.id.tv_book_item_price);
             ibDeleteBook = itemView.findViewById(R.id.ib_delete_book);
-
+            tvBookItemBorrowCount = itemView.findViewById(R.id.tv_book_item_borrow_count);
         }
     }
 

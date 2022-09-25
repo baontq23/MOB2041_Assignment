@@ -32,6 +32,7 @@
         <entry key="app/src/main/res/layout/layout_item_customer.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/layout_item_genre.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/layout/layout_item_librarian.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/layout_item_top10_book.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/layout/layout_librarian_update_dialog.xml" value="0.5" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.33" />
         <entry key="app/src/main/res/menu/option_librarian.xml" value="0.22604166666666667" />

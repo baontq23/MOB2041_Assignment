@@ -8,6 +8,8 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.baontq.pnlib.model.Book;
+import com.baontq.pnlib.model.CallCard;
+import com.baontq.pnlib.model.Customer;
 import com.baontq.pnlib.model.Genre;
 import com.baontq.pnlib.model.Librarian;
 
@@ -29,10 +31,18 @@ public class DatabaseClient {
                     getAppDatabase().genreDao().insert(new Genre("Kỹ thuật", "Kệ 4"));
                     getAppDatabase().genreDao().insert(new Genre("Khoa học", "Kệ 2"));
                     getAppDatabase().genreDao().insert(new Genre("Giải thuật", "Kệ 3"));
-                    getAppDatabase().bookDao().insert(new Book("C++", 15000.0, 1));
-                    getAppDatabase().bookDao().insert(new Book("Lắp robot", 32000.0, 2));
-                    getAppDatabase().bookDao().insert(new Book("10 vạn câu hỏi", 12000.0, 3));
-                    getAppDatabase().bookDao().insert(new Book("javascript algorithms", 24000.0, 4));
+                    getAppDatabase().bookDao().insert(new Book("C++", 15000.0, 1, 3));
+                    getAppDatabase().bookDao().insert(new Book("Lắp robot", 32000.0, 2, 1));
+                    getAppDatabase().bookDao().insert(new Book("10 vạn câu hỏi", 12000.0, 3,1));
+                    getAppDatabase().bookDao().insert(new Book("javascript algorithms", 24000.0, 4,0));
+                    getAppDatabase().customerDao().insert(new Customer("Quang Hưng"));
+                    getAppDatabase().customerDao().insert(new Customer("Huy Hoàng"));
+                    getAppDatabase().customerDao().insert(new Customer("Dương Nam"));
+                    getAppDatabase().callCardDao().store(new CallCard(1, 1, 1, "2022-9-11", "2022-9-13", true));
+                    getAppDatabase().callCardDao().store(new CallCard(2, 1, 1, "2022-8-11", "", false));
+                    getAppDatabase().callCardDao().store(new CallCard(3, 1, 1, "2022-9-2", "", false));
+                    getAppDatabase().callCardDao().store(new CallCard(2, 1, 2, "2022-7-11", "2022-9-13", true));
+                    getAppDatabase().callCardDao().store(new CallCard(1, 1, 3, "2022-9-27", "", false));
                 }
             });
         }

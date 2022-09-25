@@ -64,6 +64,14 @@
                 tools:text="Genre" />
 
             <TextView
+                android:id="@+id/tv_book_item_borrow_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textSize="15sp"
+                tools:text="Borrow count" />
+
+            <TextView
                 android:id="@+id/tv_book_item_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -28,6 +28,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.baontq.pnlib.R;
+import com.baontq.pnlib.dao.BookDao;
 import com.baontq.pnlib.dao.CallCardDao;
 import com.baontq.pnlib.database.DatabaseClient;
 import com.baontq.pnlib.interfaces.HandleCallCardItem;
@@ -58,11 +59,11 @@ public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCa
     private Context mContext;
     private List<CallCard> mListCards;
     private List<Book> mListBooks;
-    private List<Librarian> mListLibrarians;
     private List<Customer> mListCustomers;
     private List<Genre> mListGenres;
     private HandleCallCardItem handleCallCardItem;
     private CallCardDao callCardDao;
+    private BookDao bookDao;
     private Map<Integer, String> genreMap;
     private Map<Integer, Book> bookMap;
     private Map<Integer, Customer> customerMap;
@@ -72,11 +73,11 @@ public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCa
         this.mContext = mContext;
         this.mListCards = mListCards;
         this.mListBooks = mListBooks;
-        this.mListLibrarians = mListLibrarians;
         this.mListCustomers = mListCustomers;
         this.mListGenres = mListGenres;
         this.handleCallCardItem = handleCallCardItem;
         callCardDao = DatabaseClient.getInstance(mContext).getAppDatabase().callCardDao();
+        bookDao = DatabaseClient.getInstance(mContext).getAppDatabase().bookDao();
         genreMap = mListGenres.stream().collect(Collectors.toMap(Genre::getId, Genre::getName));
         bookMap = mListBooks.stream().collect(Collectors.toMap(Book::getId, Function.identity()));
         customerMap = mListCustomers.stream().collect(Collectors.toMap(Customer::getId, Function.identity()));
@@ -103,7 +104,7 @@ public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCa
         holder.tvBookItemRecentLibrarian.setText("Thủ thư thực hiện: " + librarianMap.get(callCard.getLibrarianId()).getFullName());
         holder.itemView.setOnClickListener(view -> showUpdateItemDialog(position, mListCards.get(position)));
         holder.ibDeleteCard.setOnClickListener(view -> deleteItem(position));
-
+        holder.tvCardItemBook.setText(bookMap.get(callCard.getBookId()).getName());
         holder.cvImage.setCardBackgroundColor(mContext.getColor(R.color.primary_light));
         holder.tvBookItemStatusTime.setTextColor(mContext.getColor(callCard.isReturned() ? RETURNED_STATUS_COLOR : BORROW_STATUS_COLOR));
     }
@@ -121,19 +122,16 @@ public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCa
         callCard.setCustomerId(mListCustomers.get(0).getId());
         Dialog dialog = new Dialog(mContext);
         dialog.setContentView(R.layout.layout_dialog_call_card);
-        TextView tvDialogTitle;
+
         Spinner snDialogBook, snDialogCustomer;
         TextInputLayout edtLayoutNewCallCardTime;
         TextInputEditText edtDialogCallCardTime;
-        SwitchMaterial swDialogIsReturned;
         MaterialButton btnDialogClose, btnDialogSubmit;
 
-        tvDialogTitle = dialog.findViewById(R.id.tv_dialog_title);
         snDialogBook = dialog.findViewById(R.id.sn_dialog_book);
         snDialogCustomer = dialog.findViewById(R.id.sn_dialog_customer);
         edtLayoutNewCallCardTime = dialog.findViewById(R.id.edt_layout_new_call_card_time);
         edtDialogCallCardTime = dialog.findViewById(R.id.edt_dialog_call_card_time);
-        swDialogIsReturned = dialog.findViewById(R.id.sw_dialog_is_returned);
         btnDialogClose = dialog.findViewById(R.id.btn_dialog_close);
         btnDialogSubmit = dialog.findViewById(R.id.btn_dialog_submit);
         edtLayoutNewCallCardTime.setEndIconOnClickListener(view -> {
@@ -194,6 +192,7 @@ public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCa
                 protected Integer doInBackground(Void... voids) {
                     if (callCardDao.store(callCard) > 0) {
                         mListCards = callCardDao.listAll();
+                        bookDao.increaseBorrowCount(callCard.getBookId());
                         return SUCCESS;
                     }
                     return FAILED;
@@ -222,6 +221,7 @@ public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCa
     private void showUpdateItemDialog(int position, CallCard callCard) {
         int bookIndex = 0;
         int customerIndex = 0;
+        int currentBook = callCard.getBookId();
         String[] dateSelected = new String[1];
         Calendar calendar = Calendar.getInstance();
         callCard.setLibrarianId(mContext.getSharedPreferences("session", Context.MODE_PRIVATE).getInt(mContext.getString(R.string.session_data_id), 1));
@@ -341,6 +341,10 @@ public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCa
                 protected Integer doInBackground(Void... voids) {
                     if (callCardDao.update(callCard) > 0) {
                         mListCards.set(position, callCard);
+                        if (callCard.getBookId() != currentBook) {
+                            bookDao.increaseBorrowCount(callCard.getBookId());
+                            bookDao.decreaseBorrowCount(currentBook);
+                        }
                         return SUCCESS;
                     }
                     return FAILED;
@@ -416,7 +420,7 @@ public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCa
 
     static class CallCardVH extends RecyclerView.ViewHolder {
         CardView cvImage;
-        TextView tvCardItemId, tvCardItemCustomer, tvCardItemPrice, tvBookItemStatusTime, tvBookItemRecentLibrarian;
+        TextView tvCardItemId, tvCardItemCustomer, tvCardItemPrice, tvBookItemStatusTime, tvBookItemRecentLibrarian, tvCardItemBook;
         ImageButton ibDeleteCard;
 
         public CallCardVH(@NonNull View itemView) {
@@ -429,7 +433,7 @@ public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCa
             ibDeleteCard = itemView.findViewById(R.id.ib_delete_card);
             tvBookItemStatusTime = itemView.findViewById(R.id.tv_book_item_status_time);
             tvBookItemRecentLibrarian = itemView.findViewById(R.id.tv_book_item_recent_librarian);
-
+            tvCardItemBook = itemView.findViewById(R.id.tv_card_item_book);
         }
     }
 }
