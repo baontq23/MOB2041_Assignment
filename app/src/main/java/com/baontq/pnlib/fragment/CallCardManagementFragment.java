@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 
 import com.baontq.pnlib.R;
@@ -59,6 +60,17 @@ public class CallCardManagementFragment extends Fragment {
         genreDao = DatabaseClient.getInstance(requireContext()).getAppDatabase().genreDao();
         rvListCallCard.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         fabAddCallCard.setOnClickListener(view1 -> callCardAdapter.addItem());
+       rvListCallCard.addOnScrollListener(new RecyclerView.OnScrollListener() {
+           @Override
+           public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+               super.onScrolled(recyclerView, dx, dy);
+               if (dy > 5) {
+                   fabAddCallCard.setVisibility(View.INVISIBLE);
+               }else  {
+                   fabAddCallCard.setVisibility(View.VISIBLE);
+               }
+           }
+       });
         initialData();
     }
 
