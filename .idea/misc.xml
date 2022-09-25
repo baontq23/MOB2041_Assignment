@@ -22,7 +22,7 @@
         <entry key="app/src/main/res/layout/fragment_genre_management.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_income_analytics.xml" value="0.1796875" />
         <entry key="app/src/main/res/layout/fragment_librarian_management.xml" value="0.1796875" />
-        <entry key="app/src/main/res/layout/fragment_top10_seller.xml" value="0.165625" />
+        <entry key="app/src/main/res/layout/fragment_top10_seller.xml" value="0.33" />
         <entry key="app/src/main/res/layout/layout_dialog_book.xml" value="0.35208333333333336" />
         <entry key="app/src/main/res/layout/layout_dialog_call_card.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/layout_genre_dialog.xml" value="0.353125" />

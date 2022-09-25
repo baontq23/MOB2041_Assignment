@@ -25,7 +25,7 @@ public interface BookDao {
     @Update
     int update(Book book);
 
-    @Query("SELECT * FROM tbl_book ORDER BY book_borrow_count DESC LIMIT 10")
+    @Query("SELECT * FROM tbl_book WHERE book_borrow_count != 0 ORDER BY book_borrow_count DESC LIMIT 10")
     List<Book> getTop10();
 
     @Query("UPDATE tbl_book SET book_borrow_count = book_borrow_count + 1 WHERE book_id = :id")
@@ -33,4 +33,7 @@ public interface BookDao {
 
     @Query("UPDATE tbl_book SET book_borrow_count = book_borrow_count - 1 WHERE book_id = :id")
     int decreaseBorrowCount(int id);
+
+    @Query("SELECT * FROM tbl_book WHERE book_borrow_count != 0 ORDER BY (book_borrow_count * book_price) DESC LIMIT 10 ")
+    List<Book> getTop10ByIncome();
 }
