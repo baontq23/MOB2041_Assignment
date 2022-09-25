@@ -356,7 +356,6 @@ public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCa
                     if (result.equals(SUCCESS)) {
                         notifyItemChanged(position);
                         Toast.makeText(mContext, "Cập nhật phiếu mượn thành công!", Toast.LENGTH_SHORT).show();
-                        handleCallCardItem.listSizeChangeListener(mListCards.size());
                         dialog.dismiss();
                     } else {
                         Toast.makeText(mContext, "Something went wrong!", Toast.LENGTH_SHORT).show();
@@ -394,6 +393,7 @@ public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCa
                             if (result.equals(SUCCESS)) {
                                 notifyItemRemoved(position);
                                 notifyItemRangeChanged(position, mListCards.size());
+                                handleCallCardItem.listSizeChangeListener(position);
                                 Toast.makeText(mContext, "Đã xoá phiếu mượn thành công!", Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(mContext, "Something went wrong!", Toast.LENGTH_SHORT).show();

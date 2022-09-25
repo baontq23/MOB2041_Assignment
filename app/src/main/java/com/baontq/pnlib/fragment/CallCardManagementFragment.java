@@ -76,7 +76,7 @@ public class CallCardManagementFragment extends Fragment {
                 if (customerList.isEmpty()) {
                     return LIST_CUSTOMER_EMPTY;
                 }
-                callCardAdapter = new CallCardAdapter(requireContext(), callCardDao.listAll(), bookList, librarianDao.listAll(), customerDao.getAll(), genreDao.getAll(), position -> checkStatusList());
+                callCardAdapter = new CallCardAdapter(requireContext(), callCardDao.listAll(), bookList, librarianDao.listAll(), customerDao.getAll(), genreDao.getAll(), position -> checkStatusList(position));
 
                 return 0;
             }
@@ -92,7 +92,7 @@ public class CallCardManagementFragment extends Fragment {
                     fabAddCallCard.setVisibility(View.INVISIBLE);
                 } else {
                     rvListCallCard.setAdapter(callCardAdapter);
-                    checkStatusList();
+                    checkStatusList(0);
                 }
 
             }
@@ -102,11 +102,12 @@ public class CallCardManagementFragment extends Fragment {
         getCallCardTask.execute();
     }
 
-    private void checkStatusList() {
+    private void checkStatusList(int position) {
         if (callCardAdapter.getItemCount() == 0) {
             tvListStatus.setVisibility(View.VISIBLE);
         } else {
             tvListStatus.setVisibility(View.INVISIBLE);
+            rvListCallCard.smoothScrollToPosition(position);
         }
     }
 
