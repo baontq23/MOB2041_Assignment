@@ -53,6 +53,8 @@ import java.util.stream.Collectors;
 public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCardVH> {
     private static final Integer SUCCESS = 0;
     private static final Integer FAILED = 1;
+    private final int RETURNED_STATUS_COLOR = R.color.teal_700;
+    private final int BORROW_STATUS_COLOR = android.R.color.holo_orange_dark;
     private Context mContext;
     private List<CallCard> mListCards;
     private List<Book> mListBooks;
@@ -101,6 +103,9 @@ public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCa
         holder.tvBookItemRecentLibrarian.setText("Thủ thư thực hiện: " + librarianMap.get(callCard.getLibrarianId()).getFullName());
         holder.itemView.setOnClickListener(view -> showUpdateItemDialog(position, mListCards.get(position)));
         holder.ibDeleteCard.setOnClickListener(view -> deleteItem(position));
+
+        holder.cvImage.setCardBackgroundColor(mContext.getColor(R.color.primary_light));
+        holder.tvBookItemStatusTime.setTextColor(mContext.getColor(callCard.isReturned() ? RETURNED_STATUS_COLOR : BORROW_STATUS_COLOR));
     }
 
     @Override
@@ -313,7 +318,8 @@ public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCa
         btnDialogSubmit.setOnClickListener(view -> {
             callCard.setReturned(swDialogIsReturned.isChecked());
             if (callCard.isReturned()) {
-                callCard.setReturnTime(dateSelected[0]);
+                if (!TextUtils.isEmpty(dateSelected[0]))
+                    callCard.setReturnTime(dateSelected[0]);
                 if (TextUtils.isEmpty(callCard.getReturnTime())) {
                     edtLayoutNewCallCardTime.setError("Chưa chọn ngày");
                     new Handler().postDelayed(new Runnable() {
@@ -385,7 +391,7 @@ public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCa
                                 notifyItemRemoved(position);
                                 notifyItemRangeChanged(position, mListCards.size());
                                 Toast.makeText(mContext, "Đã xoá phiếu mượn thành công!", Toast.LENGTH_SHORT).show();
-                            }else {
+                            } else {
                                 Toast.makeText(mContext, "Something went wrong!", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -395,6 +401,7 @@ public class CallCardAdapter extends RecyclerView.Adapter<CallCardAdapter.CallCa
                     deleteCallCardTask.execute();
                 }).show();
     }
+
     private String dateFormat(String input) {
         try {
             final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
