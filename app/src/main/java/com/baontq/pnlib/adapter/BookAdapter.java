@@ -76,7 +76,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookVH> {
         holder.tvBookItemPrice.setText(String.format("Giá bìa: %.0f VND", book.getPrice()));
         holder.ibDeleteBook.setOnClickListener(view -> deleteItem(position));
         holder.itemView.setOnClickListener(view -> showUpdateItemDialog(position, mBookList.get(position)));
-        holder.tvBookItemBorrowCount.setText("Đã bán: " + book.getBorrowCount());
+        holder.tvBookItemBorrowCount.setText("Số lần tương tác: " + book.getBorrowCount());
+        if (mContext.getSharedPreferences("session", Context.MODE_PRIVATE).getString(mContext.getString(R.string.session_data_role), "User").equalsIgnoreCase("user")) {
+            holder.tvBookItemBorrowCount.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -296,7 +299,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookVH> {
     }
 
     static class BookVH extends RecyclerView.ViewHolder {
-        TextView tvBookItemName, tvBookItemGenre, tvBookItemPrice,tvBookItemBorrowCount;
+        TextView tvBookItemName, tvBookItemGenre, tvBookItemPrice, tvBookItemBorrowCount;
         ImageButton ibDeleteBook;
 
         public BookVH(@NonNull View itemView) {
