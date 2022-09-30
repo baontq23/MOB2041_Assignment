@@ -77,7 +77,6 @@ public class CallCardManagementFragment extends Fragment {
     private void initialData() {
         class GetCallCardTask extends AsyncTask<Void, Void, Integer> {
 
-            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             protected Integer doInBackground(Void... voids) {
                 bookList = bookDao.getAll();

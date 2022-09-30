@@ -21,9 +21,9 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_centerVertical="true"
+            android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:text="1"
-            android:fontFamily="@font/roboto_bold"
             android:textSize="48sp"
             android:textStyle="bold" />
 
@@ -32,8 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:fontFamily="@font/roboto_bold"
             android:layout_toEndOf="@+id/top10_item_index"
+            android:fontFamily="@font/roboto_bold"
             android:text="Book name example"
             android:textSize="22sp"
             android:textStyle="bold" />
